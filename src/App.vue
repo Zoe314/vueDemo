@@ -7,17 +7,39 @@
 
     <div class="tabbar">
       <ul>
-        <li>我的</li>
-        <li>列表</li>
-        <li>购物车</li>
-        <li>修改信息</li>
+        <li><router-link to="/my">我的</router-link></li>
+        <li><router-link to="/list">列表</router-link></li>
+        <li><router-link to="/shopcar">购物车</router-link></li>
+        <li><router-link to="/edit">修改信息</router-link></li>
       </ul>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
+import VueRouter from 'vue-router'
 import Header from '../src/components/Header.vue'
+const My = {template: '<div>foo</div>'};
+const List = {template: '<div>foo</div>'};
+const Shopcar = {template: '<div>foo</div>'};
+const Edit = {template: '<div>修改</div>'};
+const routes=[
+  {path:'/my',component:My},
+  {path:'/list',component:List},
+  {path:'/shopcar',component:Shopcar},
+  {path:'/edit',component:Edit}
+]
+const router = new VueRouter({
+      routes // （缩写）相当于 routes: routes
+    })
+
+    // 4. 创建和挂载根实例。
+    // 记得要通过 router 配置参数注入路由，
+    // 从而让整个应用都有路由功能
+    const app = new Vue({
+      router
+    }).$mount('#app')
 
 export default {
   name: 'app',
